@@ -23,7 +23,9 @@ int main (){
 
     while(true) {
         // wait until a number gets available
+        std::cout << "before wait" << std::endl;
         data->reader.wait();
+        std::cout << "after wait" << std::endl;
 
         if (data->value == 1)
             Function1();

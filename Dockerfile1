@@ -1,0 +1,8 @@
+FROM centos:centos7
+MAINTAINER Tatsuki Miura
+
+RUN yum install -y gcc gcc-c++
+
+WORKDIR /work
+ADD  ./p1 .
+

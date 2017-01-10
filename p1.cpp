@@ -12,7 +12,7 @@
 using namespace boost::interprocess;
 
 int main() {
-    struct shm_remove
+    struct shm_remove;
 
     srand(time(NULL));
 
@@ -32,17 +32,14 @@ int main() {
     shared_memory_buffer *data = new (addr) shared_memory_buffer;
 
     while (true) {
+        std::cout << "before wait" << std::endl;
         //wait until the written number gets exucutes
         data->writer.wait();
-          std::cout << data->value << std::endl;
-          ++data->value;
+        std::cout << "after wait" << std::endl;
+        //wait until the written number gets exucutes
+        data->value = rand() % 3;
           std::cout << data->value << std::endl;
         sleep(1);
-
-        if (data->value >= 5) {
-          break;
-        };
-
         data->reader.post();
     }
     std::cout << "delete hoge" << std::endl;
